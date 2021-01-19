@@ -123,8 +123,8 @@ namespace IridiumLive.Services
             {
                 string newGuid = Guid.NewGuid().ToString();
                 string[] words = rxLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                string[] words1 = words[1].Split('-');
-                DateTimeOffset satTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(words1[1], CultureInfo.InvariantCulture)).AddMilliseconds(Convert.ToInt64(words[2], CultureInfo.InvariantCulture)).ToLocalTime();
+                string[] words1 = words[2].Split('.');
+                DateTimeOffset satTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(words1[0], CultureInfo.InvariantCulture)).AddMilliseconds(Convert.ToInt64(words1[1], CultureInfo.InvariantCulture)).ToLocalTime();
                 long utcTicks = satTime.ToUniversalTime().UtcTicks;
                 int quality = Convert.ToInt32(words[4].TrimEnd('%'), CultureInfo.InvariantCulture);
                 int satNo;
